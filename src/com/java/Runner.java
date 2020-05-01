@@ -4,79 +4,85 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
+        int[] array = {2, 4, -7, 8, 9, 10};
+        printArray(array);
         /**
-         * Считывание с консоли
+         * For loop
+         * */
+        for (int i = 0; i < array.length; i = i + 2) {
+            System.out.println(array[i]);
+        }
+
+        /**
+         * Foreach = для каждого
+         * */
+        System.out.println("Foreach");
+        double sum = 0;
+        for (int item : array) {
+            sum = sum + item;
+        }
+        System.out.println("Sum: " + sum);
+
+        /**
+         * while - пока
          * */
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your name");
-        String name = scanner.nextLine();
-        System.out.println("Hi " + name + "!");
-
-        /**
-         * Условные конструкции:
-         * <  - меньше
-         * >  - больше
-         * == - равно
-         * != - не равно
-         * */
-        boolean flag = false;
-        int first = 11;
-        if (first > 10) {
-            System.out.println("more than 10");
-        } else if (first == 9) {
-            System.out.println("9");
-        } else {
-            System.out.println("Other digit!");
+        while (!scanner.nextLine().equals("hi")) {
+            System.out.println("Write: hi");
         }
 
         /**
-         * Switch-case
+         * do{}while()
          * */
-        switch (first) {
-            case 9:
-                System.out.println("Nine");
-                break;
-            case 6:
-                System.out.println("Six");
-                break;
-            default:
-                System.out.println("default");
-                break;
-        }
+        do {
+            System.out.println("Write: bye");
+        } while (!scanner.nextLine().equals("bye"));
 
-        /**
-         * Тернарный оператор
-         * (условие) ? (действие, если истина) : (действие, если ложь)
-         * */
-        String str2 = first > 10 ? "More than 10" : "Less than 10";
-        System.out.println(str2);
-
-        /**
-         * Массивы
-         * */
-        int[] intArray = new int[5];
-        intArray[0] = 2;
-        intArray[1] = 4;
-        intArray[2] = -3;
-        intArray[3] = 5;
-        intArray[4] = 8;
-
-        System.out.println(intArray[1]);
-
-        int[] intArray2 = {2, 4, 7, 8, 9, 10};
-        System.out.println(intArray2[3]);
-
-        System.out.println(intArray2.length);
-
-        /**
-         * Нахождение максимального значения
-         * */
+        int min = 0;
+        int minIndex = 0;
         int max = 0;
-        for (int i = 0; i < intArray.length; i++) {
-            if (max < intArray[i]) {
-                max = intArray[i];
+        int maxIndex = 0;
+        /**
+         * Поиск минимального и максимального значения
+         * */
+        for (int i = 0; i < array.length; i++) {
+            if(i==0){
+                min = array[i];
+                max = array[i];
+                continue;
+            }
+            if(min > array[i]){
+                min = array[i];
+                minIndex = i;
+            }
+            if(max < array[i]){
+                max = array[i];
+                maxIndex = i;
             }
         }
+
+        System.out.println("Min value: " + min);
         System.out.println("Max value: " + max);
+
+        /**
+         * Меняем местами макс и мин
+         * */
+        int temp = array[minIndex];
+        array[minIndex] = array[maxIndex];
+        array[maxIndex] = temp;
+
+        printArray(array);
+    }
+
+    /**
+     * Метод для отображения элементов массива
+     * */
+    public static void printArray(int[] array){
+        String arrayStr = new String();
+        for (int i : array) {
+            arrayStr += i + ", ";
+        }
+        System.out.println("Array:");
+        System.out.println(arrayStr.substring(0, arrayStr.length()-2));
     }
 }
