@@ -4,85 +4,81 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
-        int[] array = {2, 4, -7, 8, 9, 10};
-        printArray(array);
         /**
-         * For loop
+         * Двумерный массив
          * */
-        for (int i = 0; i < array.length; i = i + 2) {
-            System.out.println(array[i]);
-        }
-
+        int[][] array = new int[][]{{1, 2, 3, 4},
+                                    {9, 4, 6, 7}};
         /**
-         * Foreach = для каждого
+         * Доступ к элементу двумерного массива
          * */
-        System.out.println("Foreach");
-        double sum = 0;
-        for (int item : array) {
-            sum = sum + item;
-        }
-        System.out.println("Sum: " + sum);
+        System.out.println(array[0][1]); // [строка][столбец]
 
         /**
-         * while - пока
+         * Вызов методов
          * */
-        Scanner scanner = new Scanner(System.in);
-        while (!scanner.nextLine().equals("hi")) {
-            System.out.println("Write: hi");
-        }
+        printTable(3, 5);
 
-        /**
-         * do{}while()
-         * */
-        do {
-            System.out.println("Write: bye");
-        } while (!scanner.nextLine().equals("bye"));
+        int sum = sum(2, 3);
+        System.out.println("Summa = " + sum);
+        proizv(2, 3);
 
-        int min = 0;
-        int minIndex = 0;
-        int max = 0;
-        int maxIndex = 0;
-        /**
-         * Поиск минимального и максимального значения
-         * */
-        for (int i = 0; i < array.length; i++) {
-            if(i==0){
-                min = array[i];
-                max = array[i];
-                continue;
-            }
-            if(min > array[i]){
-                min = array[i];
-                minIndex = i;
-            }
-            if(max < array[i]){
-                max = array[i];
-                maxIndex = i;
-            }
-        }
+        String fio = getFio();
+        System.out.println(fio);
 
-        System.out.println("Min value: " + min);
-        System.out.println("Max value: " + max);
-
-        /**
-         * Меняем местами макс и мин
-         * */
-        int temp = array[minIndex];
-        array[minIndex] = array[maxIndex];
-        array[maxIndex] = temp;
-
-        printArray(array);
+        String fio2 = getFio("Ivanov", "Ivan");
+        System.out.println(fio2);
     }
 
     /**
-     * Метод для отображения элементов массива
-     * */
-    public static void printArray(int[] array){
-        String arrayStr = new String();
-        for (int i : array) {
-            arrayStr += i + ", ";
+     * Метод распечатывает таблицу умножения 10*10
+     */
+    public static void printTable() {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                System.out.println(i + " * " + j + " = " + (i * j));
+            }
+            System.out.println("------------------");
         }
-        System.out.println("Array:");
-        System.out.println(arrayStr.substring(0, arrayStr.length()-2));
+    }
+
+    /**
+     * Метод распечатывает таблицу умножения, учитывая заданные параметры
+     */
+    public static void printTable(int from, int to) {
+        for (int i = 1; i <= from; i++) {
+            for (int j = 1; j <= to; j++) {
+                System.out.println(i + " * " + j + " = " + (i * j));
+            }
+            System.out.println("------------------");
+        }
+    }
+
+    /**
+     * Объявление метода:
+     * модификатор доступа - тип возвращаемое значение - название метода (входные параметры) { тело метода}
+     */
+
+    public static int sum(int a, int b) {
+        return a + b;
+    }
+
+    public static void proizv(int a, int b) {
+        System.out.println("Proizvedenie = " + a * b);
+    }
+
+    /**
+     * Перегрузка метода - overload
+     * Несколько методов в классе с одинаковыми названиеми, но разными входными параметрами
+     * */
+    public static String getFio() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your name");
+        String fio = scanner.nextLine();
+        return fio;
+    }
+
+    public static String getFio(String fam, String name) {
+        return fam + " " + name;
     }
 }
