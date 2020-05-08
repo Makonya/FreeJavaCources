@@ -1,26 +1,35 @@
 package com.java;
 
-import java.util.Scanner;
-
 public class Runner {
     public static void main(String[] args) {
-        Person person = new Person();
-        Person person2 = new Person("Stas");
+        /**
+         * 3 основные парадигмы ООП(3 кита ООП):
+         * - Наследование
+         * - Инкапсуляция
+         * - Полиморфизм
+         * */
 
-        System.out.println("First person");
-        System.out.println(person.name);
-
-        System.out.println("Second person");
-        System.out.println(person2.height);
-
+        Person person = new Person("Ivan", "Ivanov");
+        person.weight = 40.5;
+        person.height = 150.5;
+        System.out.println(person);
+        System.out.println(person.getName());
+        System.out.println(person.getSecondName());
+        person.setSecondName("Petrov");
+        System.out.println(person.getSecondName());
         person.walk();
 
-        while (!person2.talk()){
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter double value");
-            double value = Double.parseDouble(scanner.nextLine());
-            person2.height = value;
-            person2.weight = value;
-        }
+        Mammal mammal = new Mammal();
+        mammal.height = 50;
+        mammal.type = "wild";
+        System.out.println(mammal);
+
+        /**
+         * Модификаторы доступа
+         * - public - доступен во всей программе
+         * - protected - доступен наследникам
+         * - default - доступен в рамках пакета
+         * - private - доступен в рамках класса
+         * */
     }
 }
