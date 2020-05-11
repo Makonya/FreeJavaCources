@@ -5,31 +5,29 @@ public class Runner {
         /**
          * 3 основные парадигмы ООП(3 кита ООП):
          * - Наследование
-         * - Инкапсуляция
-         * - Полиморфизм
+         * - Инкапсуляция - сокрытие реализации
+         * - Полиморфизм - название одно, реализация разная
          * */
 
-        Person person = new Person("Ivan", "Ivanov");
-        person.weight = 40.5;
-        person.height = 150.5;
-        System.out.println(person);
-        System.out.println(person.getName());
-        System.out.println(person.getSecondName());
-        person.setSecondName("Petrov");
-        System.out.println(person.getSecondName());
-        person.walk();
+        BMWX6 bmwx6 = new BMWX6("black");
+        AudiA80 audiA80 = new AudiA80("red");
 
-        Mammal mammal = new Mammal();
-        mammal.height = 50;
-        mammal.type = "wild";
-        System.out.println(mammal);
+        bmwx6.run();
+        bmwx6.stop();
+        bmwx6.doDefaultThings();
+
+        BMWX6.doSmt();
+
+        audiA80.run();
+        audiA80.stop();
+
+        String model = Runnable.MODEL;
+        System.out.println(model);
 
         /**
-         * Модификаторы доступа
-         * - public - доступен во всей программе
-         * - protected - доступен наследникам
-         * - default - доступен в рамках пакета
-         * - private - доступен в рамках класса
+         * abstract
+         * 1) abstract class(Класс) - нельзя создать объекты данного класса
+         * 2) abstract method(Метод) - не имеет реализации
          * */
     }
 }
