@@ -1,65 +1,45 @@
 package com.java;
 
+import java.util.Scanner;
+
 public class Runner {
     public static void main(String[] args) {
         /**
-         * Объвление переменной - указание типа переменной, названия
+         * 5 конструкций для обработки исключений:
+         * try - помещаем код, который может сгенерировать ошибку
+         * catch - ловим ошибку, возникшую в блоке try
+         * finally - выполняется всегда, в не зависимости от ошибки(возникла или нет), кроме  System.exit(code);
+         * throw - генерирует новyю ошибку
+         * throws - пробрасывает исключение, в вызывающий метод
          * */
-        int val;
 
-        /**
-         * Инициализация переменной - задание значения переменной
-         * */
-        val = 0;
-        val++;
-        System.out.println(Season.WINTER);
-        if (true) {
-            int temp = 5;
-            System.out.println(temp);
+        int result = 0;
+        try {
+            result = 4/0;
+        } catch (ArithmeticException e){
+//            System.exit(0);
+            System.out.println("Don't divide by zero!!!");
+        } finally {
+            System.out.println("Finally block!");
         }
-        int mainMethodVariable = 8;
-        doSmt(mainMethodVariable);
+        System.out.println(result);
 
-        /**
-         * break - выходит с цикла
-         * */
-        int n = 1;
-        for (int i = 0; i < 10; i++) {
-            if (n > 12) {
-                break;
-            } else {
-                n = n * 2;
-            }
-        }
-        /**
-         * continue - переходит на следующую итерацию цикла
-         * % - остаток от деления
-         * */
-        for (int i = 0; i < 10; i++) {
-            if (i%2==0){
-                continue;
-            }
-            System.out.println(i);
+        try {
+            doSmt();
+        } catch (CheckException ex){
+            System.out.println(ex.getMessage() + " User entered number = " + ex.getNumber());
         }
 
-        /**
-         * Обработка исключений
-         * */
-        try{
-            int result = 2/0;
-        } catch (ArithmeticException ex){
-            ex.printStackTrace();
-        }
-
-        System.out.println("Bye");
     }
 
-    private static void doSmt(int val) {
-        val++;
+    private static void doSmt() throws CheckException{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter integer:");
+        int n = scanner.nextInt();
+        if(n>0){
+            System.out.println("OK");
+        } else {
+            throw new CheckException("Number should be greater than zero!", n);
+        }
     }
-}
-
-enum Season {
-    WINTER,
-    SUMMER
 }
