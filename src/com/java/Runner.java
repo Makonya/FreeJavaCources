@@ -1,45 +1,71 @@
 package com.java;
 
-import java.util.Scanner;
-
 public class Runner {
     public static void main(String[] args) {
+        doSmt();
         /**
-         * 5 конструкций для обработки исключений:
-         * try - помещаем код, который может сгенерировать ошибку
-         * catch - ловим ошибку, возникшую в блоке try
-         * finally - выполняется всегда, в не зависимости от ошибки(возникла или нет), кроме  System.exit(code);
-         * throw - генерирует новyю ошибку
-         * throws - пробрасывает исключение, в вызывающий метод
+         * Типы данных: примитивные, ссылочные(наследуются от Object)
+         * */
+        /**
+         * byte, short, int, long - целочисленные
+         * float, double - вещественные, дробные
+         * boolean - логический
+         * char - символьный: 'h'
+         * */
+        char ch = 'h';
+        char ch2 = 'y';
+
+        byte b = 1;
+        Character b2 = 'j';
+
+        doSmt2(ch2, true, "Trrr");
+        /**
+         * Обертки:
+         * Byte, Short, Integer, Long(L)
+         * Float(F), Double
+         * Boolean
+         * Character
          * */
 
-        int result = 0;
-        try {
-            result = 4/0;
-        } catch (ArithmeticException e){
-//            System.exit(0);
-            System.out.println("Don't divide by zero!!!");
-        } finally {
-            System.out.println("Finally block!");
+        /**
+         * String - "hello" - неизменяемый тип данных - при изменении создается новый объект
+         * */
+        String str = "helrrr";
+//        str = "rrr";
+        str = str + 2;
+        char[] charArray = str.toCharArray();
+        boolean flag = false;
+        for (char c : charArray) {
+            if(c == 'o'){
+                flag = true;
+            }
         }
-        System.out.println(result);
-
-        try {
-            doSmt();
-        } catch (CheckException ex){
-            System.out.println(ex.getMessage() + " User entered number = " + ex.getNumber());
-        }
-
-    }
-
-    private static void doSmt() throws CheckException{
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter integer:");
-        int n = scanner.nextInt();
-        if(n>0){
-            System.out.println("OK");
+        if(flag){
+            System.out.println(str + " contains o");
         } else {
-            throw new CheckException("Number should be greater than zero!", n);
+            System.out.println(str + " doesn't contains o");
         }
+
+        /**
+         * StringBuilder, StringBuffer - изменяемый тип данных
+         * StringBuffer - потокобезопасный
+         * append - метод, объединяет строки
+         * */
+        StringBuilder sb = new StringBuilder("sb");
+        sb = sb.append("tt");
+        sb = sb.reverse();
+        StringBuffer stringBuffer = new StringBuffer();
+
     }
+
+    private static void doSmt(){
+        System.out.println("Doo");
+    }
+    private static MyValue doSmt2(char ch2, boolean b, String str){
+        MyValue myValue = new MyValue();
+        myValue.str = "Thh";
+        myValue.flag = false;
+        return myValue;
+    }
+
 }
